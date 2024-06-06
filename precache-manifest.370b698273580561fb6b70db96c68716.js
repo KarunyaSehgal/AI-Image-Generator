@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "daa37799d8d4138b38b2ba7594b059b1",
+    "revision": "4e3eff6e91a591ceefaf35c822ed9931",
     "url": "/ai-image-generator/index.html"
   },
   {
-    "revision": "66ce5e2d6c3bd84722ae",
+    "revision": "3c4aa4d020f06a83c8c6",
     "url": "/ai-image-generator/static/css/main.bb6a24fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ai-image-generator/static/js/3.ba8b7f13.chunk.js"
   },
   {
-    "revision": "66ce5e2d6c3bd84722ae",
-    "url": "/ai-image-generator/static/js/main.7ed43f4b.chunk.js"
+    "revision": "3c4aa4d020f06a83c8c6",
+    "url": "/ai-image-generator/static/js/main.753e5795.chunk.js"
   },
   {
     "revision": "841d712dc2e6844777fc",
