@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import ImageGenerator from './Components/ImageGenerator/ImageGenerator';
 
