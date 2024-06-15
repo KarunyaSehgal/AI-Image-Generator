@@ -1,69 +1,87 @@
-import React, {useRef, useState } from "react";
-import './ImageGenerator.css'
-import default_image from '../Assets/default_image.jpg'
+import React, { useRef, useState } from "react";
+import './ImageGenerator.css';
+import default_image from '../Assets/default_image.jpg';
 
 const ImageGenerator = () => {
-    const [image_url,setImage_url] = useState("/");
-    let inputRef = useRef(null);
-    //used for updating the image of thwe web page
-    const [loading,setLoading] = useState(false);
-    //loading bar jab generate pe click karenge tab dikhna chahiye, usse pehle nahi isliye false kardiya
- 
- 
+    const [image_url, setImage_url] = useState("/");
+    const [loading, setLoading] = useState(false);
+    const inputRef = useRef(null);
+
     const imageGenerator = async () => {
-        if(inputRef.current.value===""){
-            return 0;
-            //agar koi input text nahi diya
+        if (inputRef.current.value === "") {
+            alert("Please enter a description.");
+            return;
         }
+        const token = "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";
         setLoading(true);
-        //before image loaded the "loading" text will be shown
-        //debugger;
-        const response = await fetch (
-            "https://api.openai.com/v1/images/generations",
-            {
-                method: "POST",
-                headers:{
-                    "Content-Type":"application/json",
-                    Authorization:
-                    // console.log("Hello", process.env.REACT_APP_OPENAI_API_KEY)
-                    `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-                    "User-Agent":"Chrome",
-                },
-                body: JSON.stringify({
-                    prompt:`${inputRef.current.value}`,
-                    //get the text written in the input field
-                    n:1,
-                    //we want only 1 image result
-                    size:"512x512",
-                    //what size image do we want
-                }),
+
+        try {
+            const response = await fetch(
+                "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({
+                        inputs: inputRef.current.value,
+                        options: {
+                            wait_for_model: true
+                        }
+                    })
+                }
+            );
+
+            console.log("API Response:", response);
+
+            if (!response.ok) {
+                const errorResponse = await response.json();
+                console.error("Error Response:", errorResponse);
+                throw new Error(`HTTP error! status: ${response.status}, message: ${errorResponse.error}`);
             }
-        );
-        let data = await response.json();
-        // console.log(data);
-        //image ka url console mein dikh jaayega, just copy its string path
-        let data_array=data.data;
-        setImage_url(data_array[0].url);
-        setLoading(false);
-        //after image loaded the "loading" text will be removed
-    }
+
+            const data = await response.json();
+            console.log("API Response Data:", data);
+
+            if (data && data.generated_images && data.generated_images.length > 0) {
+                setImage_url(data.generated_images[0]);
+            } else {
+                throw new Error("No image URL found in the response.");
+            }
+        } catch (error) {
+            console.error("Error generating image:", error);
+            alert(`Failed to generate image. Error: ${error.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="ai-image-generator">
             <div className="header">AI Image <span>generator</span></div>
             <div className="img-loading">
-                <div className="image"><img src={image_url==="/"?default_image:image_url} alt=""></img></div>
+                <div className="image">
+                    <img src={image_url === "/" ? default_image : image_url} alt="" />
+                </div>
                 <div className="loading">
-                    <div className={loading?"loading-bar-full":"loading-bar"}></div>
-                    <div className={loading?"loading-text":"display-none"}>Loading.....</div>
+                    <div className={loading ? "loading-bar-full" : "loading-bar"}></div>
+                    <div className={loading ? "loading-text" : "display-none"}>Loading.....</div>
                 </div>
             </div>
             <div className="search-box">
-                <input type="text" ref={inputRef} className="search-input" placeholder="Describe What You Want To See"/>
-                <div className="generate-btn" onClick={()=>{imageGenerator()}}>Generate</div>
+                <input
+                    type="text"
+                    ref={inputRef}
+                    className="search-input"
+                    placeholder="Describe What You Want To See"
+                />
+                <div className="generate-btn" onClick={imageGenerator}>
+                    Generate
+                </div>
             </div>
         </div>
-    )
- }
- 
- 
- export default ImageGenerator; 
+    );
+};
+
+export default ImageGenerator;
