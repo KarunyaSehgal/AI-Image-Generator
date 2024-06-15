@@ -1,18 +1,16 @@
 {
   "files": {
-    "main.css": "/ai-image-generator/static/css/main.bb6a24fb.chunk.css",
-    "main.js": "/ai-image-generator/static/js/main.753e5795.chunk.js",
-    "main.js.map": "/ai-image-generator/static/js/main.753e5795.chunk.js.map",
-    "runtime~main.js": "/ai-image-generator/static/js/runtime~main.d28961df.js",
-    "runtime~main.js.map": "/ai-image-generator/static/js/runtime~main.d28961df.js.map",
-    "static/js/2.fd5371a8.chunk.js": "/ai-image-generator/static/js/2.fd5371a8.chunk.js",
-    "static/js/2.fd5371a8.chunk.js.map": "/ai-image-generator/static/js/2.fd5371a8.chunk.js.map",
-    "static/js/3.ba8b7f13.chunk.js": "/ai-image-generator/static/js/3.ba8b7f13.chunk.js",
-    "static/js/3.ba8b7f13.chunk.js.map": "/ai-image-generator/static/js/3.ba8b7f13.chunk.js.map",
+    "main.css": "/ai-image-generator/static/css/main.bb70cec8.css",
+    "main.js": "/ai-image-generator/static/js/main.e612841c.js",
+    "static/js/453.b389ec9a.chunk.js": "/ai-image-generator/static/js/453.b389ec9a.chunk.js",
+    "static/media/default_image.jpg": "/ai-image-generator/static/media/default_image.89c6367b86f0e94f1a48.jpg",
     "index.html": "/ai-image-generator/index.html",
-    "precache-manifest.370b698273580561fb6b70db96c68716.js": "/ai-image-generator/precache-manifest.370b698273580561fb6b70db96c68716.js",
-    "service-worker.js": "/ai-image-generator/service-worker.js",
-    "static/css/main.bb6a24fb.chunk.css.map": "/ai-image-generator/static/css/main.bb6a24fb.chunk.css.map",
-    "static/media/default_image.jpg": "/ai-image-generator/static/media/default_image.eeda8012.jpg"
-  }
+    "main.bb70cec8.css.map": "/ai-image-generator/static/css/main.bb70cec8.css.map",
+    "main.e612841c.js.map": "/ai-image-generator/static/js/main.e612841c.js.map",
+    "453.b389ec9a.chunk.js.map": "/ai-image-generator/static/js/453.b389ec9a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bb70cec8.css",
+    "static/js/main.e612841c.js"
+  ]
 }
