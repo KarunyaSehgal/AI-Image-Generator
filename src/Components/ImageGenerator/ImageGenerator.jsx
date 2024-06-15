@@ -41,14 +41,11 @@ const ImageGenerator = () => {
                 throw new Error(`HTTP error! status: ${response.status}, message: ${errorResponse.error}`);
             }
 
-            const data = await response.json();
-            console.log("API Response Data:", data);
+            const blob = await response.blob();
+            const objectURL = URL.createObjectURL(blob);
 
-            if (data && data.generated_images && data.generated_images.length > 0) {
-                setImage_url(data.generated_images[0]);
-            } else {
-                throw new Error("No image URL found in the response.");
-            }
+            console.log("Object URL:", objectURL);
+            setImage_url(objectURL);
         } catch (error) {
             console.error("Error generating image:", error);
             alert(`Failed to generate image. Error: ${error.message}`);
